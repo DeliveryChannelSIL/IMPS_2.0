@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+	"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+		"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+		<!-- ======UAT SERVER===== -->
+		
+		<property name="connection.provider_class">org.jasypt.hibernate5.connectionprovider.EncryptedPasswordDriverManagerConnectionProvider</property>
+		<property name="connection.encryptor_registered_name">configurationHibernateEncryptor</property>
+		<property name="connection.encryptor_key">hello</property>
+		
+			<!-- <property name="hbm2ddl.auto">update</property> -->
+			
+			<property name="hibernate.dialect">org.hibernate.dialect.SQLServer2012Dialect</property>
+		  	<property name="hibernate.connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</property> 
+			<property name="hibernate.connection.password">ZHZJvzarzXtoSBiNISaksQ==</property> 
+			<property name="hibernate.connection.url">jdbc:sqlserver://10.102.9.56:1433;databaseName=CBS_MAHESH</property> 
+			<property name="hibernate.connection.username">sa</property>
+			
+			<!-- <property name="hibernate.dialect">org.hibernate.dialect.SQLServer2012Dialect</property>
+		  	<property name="hibernate.connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</property> 
+			<property name="hibernate.connection.password">7l57urDO0b24ncYcaP8gbg==</property> 
+			<property name="hibernate.connection.url">jdbc:sqlserver://10.100.17.99:1902;databaseName=CBS_SKPL</property> 
+			<property name="hibernate.connection.username">rptusr</property> -->
+			
+			<!-- <property name="hibernate.dialect">org.hibernate.dialect.SQLServer2008Dialect</property>
+		  	<property name="hibernate.connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</property> 
+			<property name="hibernate.connection.password">QirAkwzhLQNXJ7DfQMnMB6OlUX/P2Xwx</property> 
+			<property name="hibernate.connection.url">jdbc:sqlserver://192.168.1.25:1433;databaseName=NEFT</property> 
+			<property name="hibernate.connection.username">sa</property> -->
+			
+			
+		 	<!-- <property name="hibernate.dialect">org.hibernate.dialect.SQLServer2012Dialect</property>
+		  	<property name="hibernate.connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</property> 
+			<property name="hibernate.connection.password">FBuYLy4Bj5zR7WPzTRD+HQ==</property> 
+			<property name="hibernate.connection.url">jdbc:sqlserver://10.100.9.110:1500;databaseName=TEST_SATARA</property> 
+			<property name="hibernate.connection.username">sa</property> -->
+			
+			<!-- <property name="hibernate.dialect">org.hibernate.dialect.OracleDialect</property>
+			<property name="hibernate.connection.driver_class">oracle.jdbc.driver.OracleDriver</property> 
+			<property name="hibernate.connection.password">cVhwPGuNYxzAwQIefJKuBg==</property> <property 
+			name="hibernate.connection.url">jdbc:oracle:thin:@10.100.9.110:1522:SILORCL</property> 
+			<property name="hibernate.connection.username">CBS_DSP</property> -->
+			
+			<!--  <property name="hibernate.connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</property> 
+			<property name="hibernate.connection.password">cbs@123</property> <property 
+			name="hibernate.connection.url">jdbc:sqlserver://10.100.9.99:1500;databaseName=CBS_SAMARTH</property> 
+			<property name="hibernate.connection.username">cbsusr</property> -->
+			
+			<!-- 	<property name="hibernate.connection.password">sa@123</property>  -->
+			<!-- <property 
+			name="hibernate.connection.url">jdbc:sqlserver://10.101.10.242:2433;databaseName=TEST_NCBL;</property>  -->
+			
+			<!-- CBS UAT -->
+			<!-- <property name="hibernate.connection.password">sql@123</property> <property 
+			name="hibernate.connection.url">jdbc:sqlserver://10.101.10.152:1433;databaseName=CBS_SKPL;</property> 
+			
+			<property name="hibernate.connection.username">sa</property>  --> 
+			<property name="show_sql">true</property> 
+			<!-- ======UAT SERVER ShivSahyandri===== -->
+			<!--  <property name="hibernate.connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</property> 
+			<property name="hibernate.connection.password">sqlsa@123#</property> <property 
+			name="hibernate.connection.url">jdbc:sqlserver://10.100.9.100:1433;databaseName=TEST_SHIV;</property> 
+			<property name="hibernate.connection.username">uat_super_admin</property> 
+			<property name="hibernate.dialect">org.hibernate.dialect.SQLServer2012Dialect</property> 
+			<property name="show_sql">true</property> <property name="connection.pool_size">21</property>  -->
+
+		<!-- <property name="connection.pool_size">100</property> -->
+		<!-- =====================ShivSahyadri Production============================= -->
+		<!-- <property name="hibernate.connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</property> 
+			<property name="hibernate.connection.username">appshiv</property> <property 
+			name="hibernate.connection.password">shiv@123</property> <property name="hibernate.connection.url">jdbc:sqlserver://10.100.2.78:1438;databaseName=CBS_SHIV</property> 
+			<property name="hibernate.dialect">org.hibernate.dialect.SQLServer2012Dialect</property> 
+			<property name="show_sql">true</property> -->
+		<!-- ======Test URI====== -->
+		<!-- <property name="hibernate.connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</property>
+		<property name="hibernate.connection.password">dev123</property>
+		<property name="hibernate.connection.url">jdbc:sqlserver://10.100.5.242:2433;databaseName=TEST_NCBL;</property>
+		<property name="hibernate.connection.username">devtest</property>
+		<property name="hibernate.dialect">org.hibernate.dialect.SQLServer2012Dialect</property>
+		<property name="show_sql">true</property>  -->
+
+		<!--==========Jaoli Bank =============== -->
+		<!-- <property name="hibernate.connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</property> 
+			<property name="hibernate.connection.password">sqlsa@123</property> <property 
+			name="hibernate.connection.url">jdbc:sqlserver://10.250.2.72:1500;databaseName=DMKJSB_Swift_New;</property> 
+			<property name="hibernate.connection.username">sa</property> <property name="hibernate.dialect">org.hibernate.dialect.SQLServer2012Dialect</property> 
+			<property name="show_sql">true</property> -->
+
+		<!-- =====Production NCBL======== -->
+		<!-- <property name="hibernate.connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</property> 
+			<property name="hibernate.connection.username">appncbl</property> <property 
+			name="hibernate.connection.password">ncbl@123</property> <property name="hibernate.connection.url">jdbc:sqlserver://10.100.2.78:1438;databaseName=CBS_NCBL</property> 
+			<property name="hibernate.dialect">org.hibernate.dialect.SQLServer2012Dialect</property> 
+			<property name="show_sql">true</property> -->
+		<!-- =====Production Mahesh======== -->
+		<!-- <property name="hibernate.connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</property> 
+			<property name="hibernate.connection.username">appmahesh</property> <property 
+			name="hibernate.connection.password">mahesh@123</property> <property name="hibernate.connection.url">jdbc:sqlserver://10.100.2.79:1439;databaseName=CBS_MAHESH</property> 
+			<property name="hibernate.dialect">org.hibernate.dialect.SQLServer2012Dialect</property> 
+			<property name="show_sql">true</property> <property name="connection.pool_size">21</property> -->
+		<!-- =====Production Shivkrupa======== -->
+		<!-- <property name="hibernate.connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</property> 
+			<property name="hibernate.connection.username">appskpl</property> <property 
+			name="hibernate.connection.password">skpl@123</property> <property name="hibernate.connection.url">jdbc:sqlserver://192.168.102.71:1500;databaseName=CBS_SKPL</property> 
+			<property name="hibernate.dialect">org.hibernate.dialect.SQLServer2012Dialect</property> 
+			<property name="show_sql">true</property> <property name="connection.pool_size">21</property> -->
+		<!-- ===========Production CNSB========== -->
+		<!-- <property name="hibernate.connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</property> 
+			<property name="hibernate.connection.username">appcnsb</property> <property 
+			name="hibernate.connection.password">cnsb@123</property> <property name="hibernate.connection.url">jdbc:sqlserver://10.100.2.76:1436;databaseName=CBS_CNSB</property> 
+			<property name="hibernate.dialect">org.hibernate.dialect.SQLServer2012Dialect</property> 
+			<property name="show_sql">true</property> -->
+
+		<!-- ===========Production UDUPI========== -->
+		<!-- <property name="hibernate.connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</property> 
+			<property name="hibernate.connection.username">appudipi</property> <property 
+			name="hibernate.connection.password">udipi@123</property> <property name="hibernate.connection.url">jdbc:sqlserver://10.100.2.76:1436;databaseName=CBS_UDIPI</property> 
+			<property name="hibernate.dialect">org.hibernate.dialect.SQLServer2012Dialect</property> 
+			<property name="show_sql">true</property> -->
+
+		<!-- ===========Production Samata========== -->
+		<!-- <property name="hibernate.connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</property> 
+			<property name="hibernate.connection.username">appsamata</property> <property 
+			name="hibernate.connection.password">samata@123</property> <property name="hibernate.connection.url">jdbc:sqlserver://10.100.2.76:1436;databaseName=CBS_SAMATA</property> 
+			<property name="hibernate.dialect">org.hibernate.dialect.SQLServer2012Dialect</property> 
+			<property name="show_sql">true</property> -->
+
+		<!-- ===========Production Bhadradri========== -->
+		<!-- <property name="hibernate.connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</property> 
+			<property name="hibernate.connection.username">appbcub</property> <property 
+			name="hibernate.connection.password">bcub@123</property> <property name="hibernate.connection.url">jdbc:sqlserver://10.100.2.79:1439;databaseName=CBS_BCUB</property> 
+			<property name="hibernate.dialect">org.hibernate.dialect.SQLServer2012Dialect</property> 
+			<property name="show_sql">true</property> -->
+
+		<!-- ===========Production KNSB========== -->
+		<!-- <property name="hibernate.connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</property> 
+			<property name="hibernate.connection.username">appknsb</property> <property 
+			name="hibernate.connection.password">knsb@123</property> <property name="hibernate.connection.url">jdbc:sqlserver://10.100.2.75:1435;databaseName=CBS_KNSB</property> 
+			<property name="hibernate.dialect">org.hibernate.dialect.SQLServer2012Dialect</property> 
+			<property name="show_sql">true</property> -->
+		<!-- ===========Test KNSB========== -->
+		<!-- <property name="hibernate.connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</property> 
+			<property name="hibernate.connection.username">sa</property> <property name="hibernate.connection.password">imsa@123</property> 
+			<property name="hibernate.connection.url">jdbc:sqlserver://10.36.142.40:1433;databaseName=KNSB_TEST</property> 
+			<property name="hibernate.dialect">org.hibernate.dialect.SQLServer2012Dialect</property> 
+			<property name="show_sql">true</property> <property name="connection.pool_size">21</property> -->
+		<!-- RDCC Bank IMPS -->
+
+		<!-- <property name="hibernate.connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</property> 
+			<property name="hibernate.connection.username">sa</property> <property name="hibernate.connection.password">Rdcc#123</property> 
+			<property name="hibernate.connection.url">jdbc:sqlserver://192.168.1.25;databaseName=IMPS</property> 
+			<property name="hibernate.dialect">org.hibernate.dialect.SQLServer2012Dialect</property> 
+			<property name="show_sql">true</property> -->
+
+		<!-- <property name="hibernate.connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</property> 
+			<property name="hibernate.connection.username">sa</property> <property name="hibernate.connection.password">Rdcc#123</property> 
+			<property name="hibernate.connection.url">jdbc:sqlserver://192.168.1.24:1433;databaseName=RDCCPROD</property> 
+			<property name="hibernate.dialect">org.hibernate.dialect.SQLServer2012Dialect</property> 
+			<property name="show_sql">true</property> -->
+		<!-- VJSP Release -->
+		<!-- <property name="hibernate.connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</property> 
+			<property name="hibernate.connection.username">appvjsb</property> <property 
+			name="hibernate.connection.password">vjsb@123</property> <property name="hibernate.connection.url">jdbc:sqlserver://10.100.2.77:1437;databaseName=CBS_VJSP</property> 
+			<property name="hibernate.dialect">org.hibernate.dialect.SQLServer2012Dialect</property> 
+			<property name="show_sql">true</property> -->
+
+		<!-- Connection Pool Specific Parameters -->
+		<!-- <property name="hibernate.hikari.minimumIdle">5</property> <property 
+			name="hibernate.hikari.maximumPoolSize">10</property> <property name="hibernate.hikari.idleTimeout">30000</property> 
+			<property name="hibernate.connection.provider_class">com.zaxxer.hikari.hibernate.HikariConnectionProvider</property> -->
+
+		<property name="hibernate.c3p0.min_size">10</property>
+		<property name="hibernate.c3p0.max_size">100</property>	
+		<property name="hibernate.c3p0.timeout">5</property>
+		<property name="hibernate.c3p0.max_statements">50</property>
+		<property name="hibernate.c3p0.idle_test_period">10</property>
+		<property name="connection.pool_size">100</property>
+		<!-- <property name="hibernate.connection.isolation">1</property> -->
+		<mapping class="com.sil.hbm.D001011" />
+		<mapping class="com.sil.hbm.D130008" />
+		<mapping class="com.sil.hbm.D009012" />
+		<mapping class="com.sil.hbm.D130014" />
+		<mapping class="com.sil.hbm.D130001" />
+		<mapping class="com.sil.hbm.D130031" />
+		<mapping class="com.sil.hbm.D047003" />
+		<mapping class="com.sil.hbm.D047001" />
+		<mapping class="com.sil.hbm.D001003" />
+		<mapping class="com.sil.hbm.D946120" />
+		<mapping class="com.sil.hbm.D010153" />
+		<mapping class="com.sil.hbm.D350059" />
+		<mapping class="com.sil.hbm.D350007" />
+		<mapping class="com.sil.hbm.D010103" />
+		<mapping class="com.sil.hbm.D010054" />
+		<mapping class="com.sil.hbm.D010053" />
+		<mapping class="com.sil.hbm.D010003" />
+		<mapping class="com.sil.hbm.D350031" />
+		<mapping class="com.sil.hbm.D350001" />
+		<mapping class="com.sil.hbm.D350032" />
+		<mapping class="com.sil.hbm.D350033" />
+		<mapping class="com.sil.hbm.D350034" />
+		<mapping class="com.sil.hbm.D350035" />
+		<mapping class="com.sil.hbm.D350038" />
+		<mapping class="com.sil.hbm.D350076" />
+		<mapping class="com.sil.hbm.D390075" />
+		<mapping class="com.sil.hbm.D009122" />
+		<mapping class="com.sil.hbm.D010080" />
+		<!-- <mapping class="com.sil.hbm.D350044"/> -->
+		<mapping class="com.sil.hbm.D010009" />
+		<mapping class="com.sil.hbm.D009022" />
+		<mapping class="com.sil.hbm.D001002" />
+		<mapping class="com.sil.hbm.D009040" />
+		<mapping class="com.sil.hbm.D350078" />
+		<mapping class="com.sil.hbm.D009044" />
+		<mapping class="com.sil.hbm.D010010" />
+		<mapping class="com.sil.hbm.D009011" />
+		<mapping class="com.sil.hbm.D002011" />
+		<mapping class="com.sil.hbm.D350076" />
+		<mapping class="com.sil.hbm.D350077" />
+		<mapping class="com.sil.hbm.D390061" />
+		<mapping class="com.sil.hbm.D350036" />
+
+		<mapping class="com.sil.hbm.D350023" />
+		<mapping class="com.sil.hbm.D010004" />
+		<mapping class="com.sil.hbm.D001005" />
+		<mapping class="com.sil.hbm.D009021" />
+		<mapping class="com.sil.hbm.D100001" />
+		<mapping class="com.sil.hbm.D100002" />
+		<mapping class="com.sil.hbm.D001004" />
+		<mapping class="com.sil.hbm.D010001" />
+		<mapping class="com.sil.hbm.D002001" />
+		<mapping class="com.sil.hbm.D020004" />
+		<mapping class="com.sil.hbm.D009042" />
+		<mapping class="com.sil.hbm.D009142" />
+		<mapping class="com.sil.hbm.D020118" />
+		<mapping class="com.sil.hbm.D020002" />
+		<mapping class="com.sil.hbm.D500025" />
+		
+		<mapping class="com.sil.hbm.D500027" />
+		<mapping class="com.sil.hbm.D500028" />
+		<mapping class="com.sil.hbm.D350036" />
+		<mapping class="com.sil.hbm.Mpostransaction" />
+		<mapping class="com.sil.hbm.D350059" />
+		<mapping class="com.sil.hbm.D010080" />
+		<mapping class="com.sil.hbm.D350044" />
+		<mapping class="com.sil.hbm.D010009" />
+		<mapping class="com.sil.hbm.D009022" />
+		<mapping class="com.sil.hbm.D001002" />
+		<mapping class="com.sil.hbm.D009040" />
+
+		<!-- <mapping class="com.sil.hbm.D009044"/> -->
+		<mapping class="com.sil.hbm.D010010" />
+		<mapping class="com.sil.hbm.D009011" />
+		<mapping class="com.sil.hbm.D002011" />
+		<mapping class="com.sil.hbm.D350076" />
+		<mapping class="com.sil.hbm.D350077" />
+		<mapping class="com.sil.hbm.D390061" />
+		<mapping class="com.sil.hbm.D350036" />
+		<mapping class="com.sil.hbm.D350037" />
+		
+		<mapping class="com.sil.hbm.D010004" />
+		<mapping class="com.sil.hbm.D001005" />
+		<mapping class="com.sil.hbm.D009021" />
+		<mapping class="com.sil.hbm.D100001" />
+		<mapping class="com.sil.hbm.D100002" />
+		<mapping class="com.sil.hbm.D001004" />
+		<mapping class="com.sil.hbm.D010001" />
+		<mapping class="com.sil.hbm.D002001" />
+		<mapping class="com.sil.hbm.D020004" />
+		<mapping class="com.sil.hbm.D009042" />
+		<mapping class="com.sil.hbm.D009142" />
+		<mapping class="com.sil.hbm.D009141" />
+		<mapping class="com.sil.hbm.D020118" />
+		<mapping class="com.sil.hbm.D020002" />
+		<mapping class="com.sil.hbm.D009047" />
+		<mapping class="com.sil.hbm.D946022" />
+		<mapping class="com.sil.hbm.D030003" />
+		<mapping class="com.sil.hbm.D030002" />
+		<mapping class="com.sil.hbm.D009141_TEST" />
+		<mapping class="com.sil.hbm.SequenceIdentifier" />
+		<mapping class="com.sil.hbm.MBTRSETSEQ" />
+		<mapping class="com.sil.hbm.MBTRSCROLLSEQ" />
+		<mapping class="com.sil.hbm.RRNNOSEQ" />
+		<mapping class="com.sil.hbm.RECONSEQ" />
+		<mapping class="com.sil.hbm.Billpayment" />
+		<mapping class="com.sil.hbm.PrepaidCardLoadBalance" />
+		<mapping class="com.sil.hbm.PrepaidCardLinkedMaster" />
+		<mapping class="com.sil.hbm.Customerdetails" />
+		<mapping class="com.sil.hbm.SimSePayTrancation" />
+		<mapping class="com.sil.hbm.D390077" />
+		<mapping class="com.sil.hbm.D350066" />
+		<mapping class="com.sil.hbm.Atmcharges" />
+		<mapping class="com.sil.hbm.ReverseLoadBalance"/>
+		<mapping class="com.sil.hbm.SmsRequest"/>
+		<mapping class="com.sil.hbm.D009037"/>
+		<mapping class="com.sil.hbm.AgencyBankingTrn"/>
+		<mapping class="com.sil.hbm.GstChargesMaster"/>
+		<mapping class="com.sil.hbm.GstTransactionHistory"/>
+		<mapping class="com.sil.hbm.D946020"/>
+		<mapping class="com.sil.hbm.D010007"/>
+		<mapping class="com.sil.hbm.RtgsCutoffParameter"/>
+		<mapping class="com.sil.hbm.RtgsMessageSecondaryDatFile"/>
+		<mapping class="com.sil.hbm.D946320"/>
+		<mapping class="com.sil.hbm.D009500"/>
+	   <mapping class="com.sil.hbm.CentrelisedBrwiseCustTDSFile"/>
+	   <mapping class="com.sil.hbm.TDSMaintananceForTD"/>
+	   <mapping class="com.sil.hbm.PeriodWiseOffset"/>
+	   <mapping class="com.sil.hbm.TDProdWiseInterest"/>
+	   <mapping class="com.sil.hbm.OffsetIntTD"/>
+	   <mapping class="com.sil.hbm.D010014"/>
+	   <mapping class="com.sil.hbm.D009046"/>
+	   <mapping class="com.sil.hbm.RtgsNeftRefNo"/>
+	   <mapping class="com.sil.hbm.UPITransaction"/>
+	   <mapping class="com.sil.hbm.D048004"/>
+	   <mapping class="com.sil.hbm.D048005"/>
+	   <mapping class="com.sil.hbm.IntrestRate"/>
+	   <mapping class="com.sil.hbm.IntrestOffset"/>
+	   <mapping class="com.sil.hbm.KYCMaster"/>
+	</session-factory>
+</hibernate-configuration>
