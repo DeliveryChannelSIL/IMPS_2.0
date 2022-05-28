@@ -37,7 +37,7 @@ public class ConfigurationLoader {
 		if (param == null || reload) {
 			try {
 				param = new Properties();
-				param.load(new FileInputStream("ini\\parameters.properties"));
+				param.load(new FileInputStream("ini/parameters.properties"));
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
 			} catch (IOException e) {
