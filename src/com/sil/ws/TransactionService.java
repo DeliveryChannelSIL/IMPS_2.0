@@ -52,6 +52,8 @@ import com.sil.domain.IMPSChargesResponse;
 import com.sil.domain.IMPSNewTransactionResponse;
 import com.sil.domain.IMPSTransactionRequest;
 import com.sil.domain.IMPSTransactionResponse;
+import com.sil.domain.ImpsValidateReq;
+import com.sil.domain.ImpsValidateRes;
 import com.sil.domain.QRUPIRequest;
 import com.sil.domain.ReverseDebitAccount;
 import com.sil.domain.RtgsNeftTransactionResponse;
@@ -3324,4 +3326,91 @@ public class TransactionService {
 			}
 	}
 
+	@POST
+	@Path("/impsacctvalidation")
+	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+	public ImpsValidateRes impsAccountValidate(ImpsValidateReq request) {
+		ImpsValidateRes response = new ImpsValidateRes();
+		System.out.println("Recived Accno::>>" + request.getPayeeAccount());
+		String accNo15Digit = request.getPayeeAccount();
+		if (null == accNo15Digit || accNo15Digit.trim().length() < 15) {
+			response.setResponseCode(MSGConstants.ERROR);
+			response.setResponseMessage(ResponseCodes.INVALID_ACCOUNT_IFSC_M1);
+			
+			return response;
+		}
+		
+
+		if (request.getPayeeIfsc().trim().length() != 11) {
+			response.setResponseCode(ResponseCodes.INVALID_ACCOUNT_IFSC_M1);
+			response.setResponseMessage(MSGConstants.INVALID_BEN_IFSC);
+			logger.error(MSGConstants.INVALID_BEN_IFSC);
+			logger.info("IMPS P2A Account Validation Response::>>" + new Gson().toJson(response));
+			return response;
+		}
+		
+
+		if (Double.parseDouble(request.getAmount()) == 0) {
+			response.setResponseCode(ResponseCodes.INSUFFICIENT_FUNDS);
+			
+			response.setResponseMessage(MSGConstants.INVALID_AMOUNT);
+			logger.error(MSGConstants.INVALID_AMOUNT);
+			logger.info("IMPS P2A Account Validation Response::>>" + new Gson().toJson(response));
+			return response;
+		}
+		
+		D009022 d009022 = null;
+		try {
+			d009022 = DataUtils.getAccount(accNo15Digit);
+			if (d009022 == null) {
+				response.setResponseCode(ResponseCodes.INVALID_ACCOUNT_IFSC_M1);
+				response.setResponseMessage(MSGConstants.INVALID_REMITTER_ACC_NO);
+				logger.info("IMPS Account Validation Response::>>" + new Gson().toJson(response));
+				return response;
+
+			}else {
+				response.setPayeeName(d009022.getLongName().trim());
+				response.setTxnId(request.getTxnId());
+			}
+				
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			response.setResponseCode(ResponseCodes.INVALID_ACCOUNT_IFSC_M1);
+			response.setResponseMessage(MSGConstants.WEB_SERVICE_ERROR);
+			logger.info("IMPS Account Validation Response::>>" + new Gson().toJson(response));
+			return response;
+		}
+		TransactionValidationResponse res = null;
+		try {
+			
+			if(request.getTxntype().equalsIgnoreCase("DR")) {
+				res = TransactionServiceImpl.validateAccount(d009022, request.getAmount(), "D");
+			}else if(request.getTxntype().equalsIgnoreCase("CR")) {
+				res = TransactionServiceImpl.validateAccount(d009022, request.getAmount(), "C");
+			}
+			//res = TransactionServiceImpl.validateAccount(d009022, "10", "C");
+			
+			if (res.getResponse().equalsIgnoreCase(MSGConstants.ERROR)) {
+				response.setResponseCode(res.getRespCode());
+				response.setResponseMessage(res.getErrorMsg());
+				logger.info("IMPS Account Validation Response::>>" + new Gson().toJson(response));
+				return response;
+			}
+			response.setResponseMessage(MSGConstants.SUCCESS_MSG);
+			response.setResponseCode("00");
+			
+			logger.info("IMPS Account Validation Response::>>" + new Gson().toJson(response));
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			logger.error(e);
+			response.setResponseCode(ResponseCodes.INVALID_ACCOUNT_IFSC_M1);
+			response.setResponseMessage(MSGConstants.WEB_SERVICE_ERROR);
+			// return response;
+		}
+		return response;
+	}
 }
