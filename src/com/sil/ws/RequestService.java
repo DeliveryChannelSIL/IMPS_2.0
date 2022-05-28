@@ -58,6 +58,8 @@ import com.sil.domain.IMPSFetchDepositeReceiptResponse;
 import com.sil.domain.IMPSFetchLoanAccountDetailsResponse;
 import com.sil.domain.IMPSTransactionResponse;
 import com.sil.domain.ImpsTransactionReport;
+import com.sil.domain.ImpsValidateReq;
+import com.sil.domain.ImpsValidateRes;
 import com.sil.domain.LookUpDetails;
 import com.sil.domain.MiniStatementResponse;
 import com.sil.domain.PigmeAccountsResponse;
@@ -3327,4 +3329,7 @@ public class RequestService {
 		}
 		return response;
 	}
+	
+	
+
 }
