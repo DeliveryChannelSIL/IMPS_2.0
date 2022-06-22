@@ -94,4 +94,10 @@ public class D010080Id implements java.io.Serializable {
 		return result;
 	}
 
+	@Override
+	public String toString() {
+		return "D010080Id [lbrCode=" + lbrCode + ", effDate=" + effDate + ", acctId=" + acctId + ", srNo=" + srNo + "]";
+	}
+
+	
 }

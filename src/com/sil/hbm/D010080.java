@@ -616,4 +616,24 @@ public class D010080 implements java.io.Serializable {
 		this.jtNameSrNo2 = jtNameSrNo2;
 	}
 
+	@Override
+	public String toString() {
+		return "D010080 [id=" + id + ", noofCheqBook=" + noofCheqBook + ", status=" + status + ", insType=" + insType
+				+ ", alphaCd=" + alphaCd + ", startInsNo=" + startInsNo + ", booksize=" + booksize + ", createDate="
+				+ createDate + ", dbtrAddMk=" + dbtrAddMk + ", dbtrAddMb=" + dbtrAddMb + ", dbtrAddMs=" + dbtrAddMs
+				+ ", dbtrAddMd=" + dbtrAddMd + ", dbtrAddMt=" + dbtrAddMt + ", dbtrAddCk=" + dbtrAddCk + ", dbtrAddCb="
+				+ dbtrAddCb + ", dbtrAddCs=" + dbtrAddCs + ", dbtrAddCd=" + dbtrAddCd + ", dbtrAddCt=" + dbtrAddCt
+				+ ", dbtrLupdMk=" + dbtrLupdMk + ", dbtrLupdMb=" + dbtrLupdMb + ", dbtrLupdMs=" + dbtrLupdMs
+				+ ", dbtrLupdMd=" + dbtrLupdMd + ", dbtrLupdMt=" + dbtrLupdMt + ", dbtrLupdCk=" + dbtrLupdCk
+				+ ", dbtrLupdCb=" + dbtrLupdCb + ", dbtrLupdCs=" + dbtrLupdCs + ", dbtrLupdCd=" + dbtrLupdCd
+				+ ", dbtrLupdCt=" + dbtrLupdCt + ", dbtrTauthDone=" + dbtrTauthDone + ", dbtrRecStat=" + dbtrRecStat
+				+ ", dbtrAuthDone=" + dbtrAuthDone + ", dbtrAuthNeeded=" + dbtrAuthNeeded + ", dbtrUpdtChkId="
+				+ dbtrUpdtChkId + ", dbtrLhisTrnNo=" + dbtrLhisTrnNo + ", olbrCode=" + olbrCode + ", oissuedTo="
+				+ oissuedTo + ", oissuedDate=" + oissuedDate + ", oinsType=" + oinsType + ", oalphaCd=" + oalphaCd
+				+ ", ostartInsNo=" + ostartInsNo + ", oendInsNo=" + oendInsNo + ", addrType=" + addrType
+				+ ", acctAddrType=" + acctAddrType + ", courierOnDay=" + courierOnDay + ", insPrdCd=" + insPrdCd
+				+ ", jtHolderYn=" + jtHolderYn + ", signTitle=" + signTitle + ", jtNameSrNo=" + jtNameSrNo
+				+ ", atParYn=" + atParYn + ", jtNameSrNo1=" + jtNameSrNo1 + ", jtNameSrNo2=" + jtNameSrNo2 + "]";
+	}
+
 }
