@@ -2493,11 +2493,11 @@ public class DataUtils {
 		if (ConfigurationLoader.getParameters(false).getProperty("DATABASE").equalsIgnoreCase("ORACLE"))
 			q = session
 				.createQuery("from D009022 where CustNo='" + lbrCode + "' and rtrim(substr(PrdAcctId, 0 ,8)) in ('"
-						+ depositeType + "') and AcctStat not in(3 ,4 ,5 ,97) and ActToBalFcy > 0  order by LBrCode, PrdAcctId ");
+						+ depositeType + "') and AcctStat not in(3 ,4 ,5 ,97) and ActTotBalFcy > 0  order by LBrCode, PrdAcctId ");
 		else
 			q = session
 			.createQuery("from D009022 where CustNo='" + lbrCode + "' and rtrim(substring(PrdAcctId, 0 ,8)) in ('"
-					+ depositeType + "') and AcctStat not in(3 ,4 ,5 ,97) and ActToBalFcy > 0 order by LBrCode, PrdAcctId ");
+					+ depositeType + "') and AcctStat not in(3 ,4 ,5 ,97) and ActTotBalFcy > 0 order by LBrCode, PrdAcctId ");
 		List<D009022> list = q.list();
 		session.close();
 		session = null;
