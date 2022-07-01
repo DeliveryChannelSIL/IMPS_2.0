@@ -4171,6 +4171,7 @@ public class TransactionServiceImpl {
 
 			D001004 READSCHGREC = DataUtils.getSystemParameter(lbrCode, "READSCHGREC");
 			String ChargeType = ConfigurationLoader.getParameters(false).getProperty("CHEQUE_STOP_CHARGE_TYPE").trim();
+			String gstChargeType = ConfigurationLoader.getParameters(false).getProperty("CHEQUE_STOP_GST_CHARGE_TYPE").trim();
 			if (READSCHGREC.getValue().trim().equalsIgnoreCase("N")) {
 
 				D130001 d130001 = DataUtils.getstopChequeCharges(lbrCode, ChargeType, insType + "");// chgType=2
@@ -4204,7 +4205,7 @@ public class TransactionServiceImpl {
 				 * =d130031.getEduCesRate() / 100; logger.error("serTaxRate::>>" +
 				 * serTaxRate); logger.error("eduCharges::>>" + eduCharges);
 				 */
-				List<GstChargesMaster> gstChargesMasters = DataUtils.getLatestCharge(ChargeType, drOperationDate);
+				List<GstChargesMaster> gstChargesMasters = DataUtils.getLatestCharge(gstChargeType, drOperationDate);
 
 				if (!gstChargesMasters.isEmpty()) {
 					GstChargesMaster gstChargesMaster = gstChargesMasters.get(0);
@@ -4259,7 +4260,7 @@ public class TransactionServiceImpl {
 				 * serTaxRate); logger.error("eduCharges::>>" + eduCharges);
 				 */
 
-				List<GstChargesMaster> gstChargesMasters = DataUtils.getLatestCharge(ChargeType, drOperationDate);
+				List<GstChargesMaster> gstChargesMasters = DataUtils.getLatestCharge(gstChargeType, drOperationDate);
 				Map<String, Object> responseMap = new HashMap();
 				// responseMap.put("sgstCharge", 0);
 				// responseMap.put("cgstCharge", 0);
