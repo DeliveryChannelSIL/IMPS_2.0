@@ -4879,14 +4879,14 @@ public class RequestServiceImpl {
 
 			if (ConfigurationLoader.getParameters(false).getProperty("DATABASE").equalsIgnoreCase("ORACLE")) {
 				if ("Y".equalsIgnoreCase(ConfigurationLoader.getParameters(false).getProperty("DDS_YN")))
-					queryString = "select distinct A.id.prdCd ,A.name FROM D009021 A WHERE A.moduleType in (20, 47) and A.id.prdCd in (SELECT trim(substr(B.id.prdAcctId,0,8)) FROM D009022 B WHERE B.custNo=:cust and B.acctStat not in(3 ,4 ,5 ,97))";
+					queryString = "select distinct A.id.prdCd ,A.name FROM D009021 A WHERE A.moduleType in (20, 47) and A.id.prdCd in (SELECT trim(substr(B.id.prdAcctId,0,8)) FROM D009022 B WHERE B.custNo=:cust and B.acctStat not in(3 ,4 ,5 ,97) and B.actTotBalFcy>0)";
 				else
-					queryString = "select distinct A.id.prdCd ,A.name FROM D009021 A WHERE A.moduleType=20 and A.id.prdCd in (SELECT trim(substr(B.id.prdAcctId,0,8)) FROM D009022 B WHERE B.custNo=:cust and B.acctStat not in(3 ,4 ,5 ,97))";
+					queryString = "select distinct A.id.prdCd ,A.name FROM D009021 A WHERE A.moduleType=20 and A.id.prdCd in (SELECT trim(substr(B.id.prdAcctId,0,8)) FROM D009022 B WHERE B.custNo=:cust and B.acctStat not in(3 ,4 ,5 ,97) and B.actTotBalFcy>0)";
 			} else {
 				if ("Y".equalsIgnoreCase(ConfigurationLoader.getParameters(false).getProperty("DDS_YN")))
-					queryString = "select distinct A.id.prdCd ,(Case when  A.moduleType = 47 then 'DDS Account' else Name end)as Name FROM D009021 A WHERE A.moduleType in (20, 47) and A.id.prdCd in (SELECT substring(B.id.prdAcctId,0,8) FROM D009022 B WHERE B.custNo=:cust and B.acctStat not in(3 ,4 ,5 ,97))";
+					queryString = "select distinct A.id.prdCd ,(Case when  A.moduleType = 47 then 'DDS Account' else Name end)as Name FROM D009021 A WHERE A.moduleType in (20, 47) and A.id.prdCd in (SELECT substring(B.id.prdAcctId,0,8) FROM D009022 B WHERE B.custNo=:cust and B.acctStat not in(3 ,4 ,5 ,97) and B.actTotBalFcy>0)";
 				else
-					queryString = "select distinct A.id.prdCd ,A.name FROM D009021 A WHERE A.moduleType=20 and A.id.prdCd in (SELECT substring(B.id.prdAcctId,0,8) FROM D009022 B WHERE B.custNo=:cust and B.acctStat not in(3 ,4 ,5 ,97))";
+					queryString = "select distinct A.id.prdCd ,A.name FROM D009021 A WHERE A.moduleType=20 and A.id.prdCd in (SELECT substring(B.id.prdAcctId,0,8) FROM D009022 B WHERE B.custNo=:cust and B.acctStat not in(3 ,4 ,5 ,97) and B.actTotBalFcy>0)";
 			}
 			int lbrcode = (int) brCode;
 			int custNo = Integer.parseInt(custno);
@@ -5287,5 +5287,87 @@ public class RequestServiceImpl {
 		receiptDetailsList.setErrorMessage(MSGConstants.SUCCESS_MSG);
 		receiptDetailsList.setReceiptList(receiptLists);
 		return receiptDetailsList;
+	}
+	
+	
+	public static List<Object[]> getFDProductListWithZero(String custno) {
+
+		int brCode;
+		try (Session session = HBUtil.getSessionFactory().openSession()) {
+
+			Transaction t = session.beginTransaction();
+			String queryString1 = "SELECT lbrCode from D009011 where custNo=" + custno;
+			Query q1 = session.createQuery(queryString1);
+
+			brCode = (int) q1.getSingleResult();
+
+			List<Object[]> list = new ArrayList<Object[]>();
+			if (ConfigurationLoader.getParameters(false).getProperty("DDS_YN").equalsIgnoreCase("Y")) {
+				if ("Y".equalsIgnoreCase(ConfigurationLoader.getParameters(false).getProperty("TD_Products_All_YN"))) {
+					String queryString = "select A.id.prdCd ,A.name, B.minDepAmt, B.maxDepAmt, B.minPeriod, B.maxPeriod, B.periodType FROM D009021 A, D020002 B WHERE A.id.lbrCode=B.id.lbrCode AND A.id.prdCd=B.id.prdCd and A.moduleType in(:moduleType) "
+							+ "AND A.moduleType in(:moduleType2) AND A.acctStat=:accstat  AND A.id.lbrCode=:brcode";
+					short mtype = 20;
+					short mtype2 = 47;
+					int lbrcode = (int) brCode;
+					Byte accstat = 1;
+					Query q = session.createQuery(queryString).setParameter("moduleType", mtype)
+							.setParameter("moduleType2", mtype).setParameter("brcode", lbrcode)
+							.setParameter("accstat", accstat);
+					list = q.getResultList();
+				} else {
+
+					String queryString = "select A.id.prdCd ,A.name, B.minDepAmt, B.maxDepAmt, B.minPeriod, B.maxPeriod, B.periodType FROM D009021 A, D020002 B WHERE A.id.lbrCode=B.id.lbrCode AND "
+							+ "A.id.prdCd=B.id.prdCd and A.moduleType in(:moduleType) AND A.moduleType in(:moduleType2) AND A.acctStat=:accstat  AND A.id.lbrCode=:brcode AND B.id.prdCd in (:prdCd)";
+					// short[] mtype = {20,47};
+					short mtype = 20;
+					short mtype2 = 47;
+					int lbrcode = (int) brCode;
+					String[] prdCd = ConfigurationLoader.getParameters(false).getProperty("TD_Products_List")
+							.split(",");
+					Byte accstat = 1;
+					Query q = session.createQuery(queryString).setParameter("moduleType", mtype)
+							.setParameter("moduleType2", mtype).setParameter("brcode", lbrcode)
+							.setParameter("accstat", accstat).setParameterList("prdCd", prdCd);
+					list = q.getResultList();
+				}
+				// queryObject.setLong(4, noofdays);
+			} else {
+				if ("Y".equalsIgnoreCase(ConfigurationLoader.getParameters(false).getProperty("TD_Products_All_YN"))) {
+					String queryString = "select A.id.prdCd ,A.name, B.minDepAmt, B.maxDepAmt, B.minPeriod, B.maxPeriod, B.periodType FROM D009021 A, D020002 B WHERE A.id.lbrCode=B.id.lbrCode AND A.id.prdCd=B.id.prdCd and A.moduleType in(:moduleType) AND A.acctStat=:accstat  AND A.id.lbrCode=:brcode";
+					short mtype = 20;
+					int lbrcode = (int) brCode;
+					Byte accstat = 1;
+					Query q = session.createQuery(queryString).setParameter("moduleType", mtype)
+							.setParameter("brcode", lbrcode).setParameter("accstat", accstat);
+					list = q.getResultList();
+				} else {
+					String queryString = "select A.id.prdCd ,A.name, B.minDepAmt, B.maxDepAmt, B.minPeriod, B.maxPeriod, B.periodType FROM D009021 A, D020002 B WHERE A.id.lbrCode=B.id.lbrCode AND "
+							+ "A.id.prdCd=B.id.prdCd and A.moduleType=:moduleType AND A.acctStat=:accstat  AND A.id.lbrCode=:brcode AND B.id.prdCd in (:prdCd)";
+					short mtype = 20;
+					int lbrcode = (int) brCode;
+					String[] prdCd = ConfigurationLoader.getParameters(false).getProperty("TD_Products_List")
+							.split(",");
+					Byte accstat = 1;
+					Query q = session.createQuery(queryString).setParameter("moduleType", mtype)
+							.setParameter("brcode", lbrcode).setParameter("accstat", accstat)
+							.setParameterList("prdCd", prdCd);
+					list = q.getResultList();
+				}
+			}
+			if (list != null && list.size() != 0) {
+				t.commit();
+				session.close();
+				t = null;
+				return list;
+			} else {
+				return null;
+			}
+
+			// session = null;
+
+		} catch (Exception sql) {
+			sql.printStackTrace();
+		}
+		return null;
 	}
 }
