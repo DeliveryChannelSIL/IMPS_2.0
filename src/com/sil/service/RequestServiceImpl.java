@@ -3601,7 +3601,7 @@ public class RequestServiceImpl {
 				request.setDebitAccount(sourceAccount.getId().getPrdAcctId());
 			// =========================================
 
-			int usrCode2 = VoucherCommon.getUsrCodeNew("WEB", session);
+			int usrCode2 = Integer.parseInt(ConfigurationLoader.getParameters(false).getProperty("IMPS_USER"));
 			if (usrCode2 == 0) {
 				logger.error("UsrCode Not Found.");
 				t.rollback();

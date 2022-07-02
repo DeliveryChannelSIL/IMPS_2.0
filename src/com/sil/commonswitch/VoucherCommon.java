@@ -568,7 +568,7 @@ public class VoucherCommon {
 			d40.setAcTotFlag('Y');
 			d40.setAcClrFlag('Y');
 
-			int usrCode2 = getUsrCodeNew("WEB", session);
+			int usrCode2 = Integer.parseInt(ConfigurationLoader.getParameters(false).getProperty("IMPS_USER"));
 
 			if (usrCode2 == 0) {
 				Logger.error("UsrCode Not Found.");
@@ -740,7 +740,7 @@ public class VoucherCommon {
 			d40.setAcTotFlag('Y');
 			d40.setAcClrFlag('Y');
 
-			int usrCode2 = getUsrCodeNew("WEB", session);
+			int usrCode2 = Integer.parseInt(ConfigurationLoader.getParameters(false).getProperty("IMPS_USER"));
 			if (usrCode2 == 0) {
 				Logger.error("UsrCode Not Found.");
 				isAborted = true;
@@ -863,7 +863,7 @@ public class VoucherCommon {
 			d40.setAcTotFlag('Y');
 			d40.setAcClrFlag('Y');
 
-			int usrCode2 = getUsrCodeNew("WEB", session);
+			int usrCode2 = Integer.parseInt(ConfigurationLoader.getParameters(false).getProperty("IMPS_USER"));
 			if (usrCode2 == 0) {
 				Logger.error("UsrCode Not Found.");
 				isAborted = true;
@@ -1380,7 +1380,7 @@ public class VoucherCommon {
 			d40.setAcTotFlag('Y');
 			d40.setAcClrFlag('Y');
 
-			int usrCode2 = getUsrCodeNew("WEB", session);
+			int usrCode2 = Integer.parseInt(ConfigurationLoader.getParameters(false).getProperty("IMPS_USER"));
 			if (usrCode2 == 0) {
 				Logger.error("UsrCode Not Found.");
 				isAborted = true;
@@ -1533,7 +1533,7 @@ public class VoucherCommon {
 			d40.setAcTotFlag('Y');
 			d40.setAcClrFlag('Y');
 
-			int usrCode2 = getUsrCodeNew("WEB", session);
+			int usrCode2 = Integer.parseInt(ConfigurationLoader.getParameters(false).getProperty("IMPS_USER"));
 			if (usrCode2 == 0) {
 				Logger.error("UsrCode Not Found.");
 				isAborted = true;
@@ -1703,7 +1703,7 @@ public class VoucherCommon {
 			d40.setAcClrFlag('Y');
 			d40.setTokenNo(reconNo);
 
-			int usrCode2 = getUsrCodeNew("WEB", session);
+			int usrCode2 = Integer.parseInt(ConfigurationLoader.getParameters(false).getProperty("IMPS_USER"));
 			if (usrCode2 == 0) {
 				Logger.error("UsrCode Not Found.");
 				isAborted = true;
@@ -1838,7 +1838,7 @@ public class VoucherCommon {
 			d40.setAcTotFlag('Y');
 			d40.setAcClrFlag('Y');
 			d40.setTokenNo(reconNo);
-			int usrCode2 = getUsrCodeNew("WEB", session);
+			int usrCode2 = Integer.parseInt(ConfigurationLoader.getParameters(false).getProperty("IMPS_USER"));
 			if (usrCode2 == 0) {
 				Logger.error("UsrCode Not Found.");
 				isAborted = true;
@@ -7887,7 +7887,7 @@ public class VoucherCommon {
 			d40.setAcTotFlag('Y');
 			d40.setAcClrFlag('Y');
 
-			int usrCode2 = getUsrCodeNew("WEB", session);
+			int usrCode2 = Integer.parseInt(ConfigurationLoader.getParameters(false).getProperty("IMPS_USER"));
 
 			if (usrCode2 == 0) {
 				Logger.error("UsrCode Not Found.");
@@ -9006,7 +9006,7 @@ public class VoucherCommon {
 										logger.error("ABB Transaction successful");
 
 										creditVoucher = common.rtgsNeftCredit(benBrCode, benAccNo, MSGConstants.ABB,
-												setNoABB, scrollNoAbb1, "OBr=" + lbrCode + " " + narration, amount, rrn,
+												setNoABB, scrollNoAbb1, "OBr=" + lbrCode + "-"+accNo.substring(0,8).trim()+"-"+Integer.parseInt(accNo.substring(16, 24))+"/" + narration, amount, rrn,
 												session);
 										if (!common.isAborted) {
 											/*** Added By Aniket Desai for 24X7 on 3rd Jan, 2020 ***/
@@ -9346,7 +9346,7 @@ public class VoucherCommon {
 			d40.setAcTotFlag('Y');
 			d40.setAcClrFlag('Y');
 
-			int usrCode2 = getUsrCodeNew("WEB", session);
+			int usrCode2 = Integer.parseInt(ConfigurationLoader.getParameters(false).getProperty("IMPS_USER"));
 			if (usrCode2 == 0) {
 				Logger.error("UsrCode Not Found.");
 				isAborted = true;
@@ -9516,7 +9516,7 @@ public class VoucherCommon {
 			d40.setAcTotFlag('Y');
 			d40.setAcClrFlag('Y');
 
-			int usrCode2 = getUsrCodeNew("WEB", session);
+			int usrCode2 = Integer.parseInt(ConfigurationLoader.getParameters(false).getProperty("IMPS_USER"));
 			if (usrCode2 == 0) {
 				Logger.error("UsrCode Not Found.");
 				isAborted = true;
@@ -9891,7 +9891,7 @@ public class VoucherCommon {
 			d40.setAcTotFlag('Y');
 			d40.setAcClrFlag('Y');
 
-			int usrCode2 = getUsrCodeNew("WEB", session);
+			int usrCode2 = Integer.parseInt(ConfigurationLoader.getParameters(false).getProperty("IMPS_USER"));
 
 			if (usrCode2 == 0) {
 				Logger.error("UsrCode Not Found.");
@@ -10062,7 +10062,7 @@ public class VoucherCommon {
 			d40.setAcClrFlag('Y');
 			d40.setTokenNo(reconNo);
 
-			int usrCode2 = getUsrCodeNew("WEB", session);
+			int usrCode2 = Integer.parseInt(ConfigurationLoader.getParameters(false).getProperty("IMPS_USER"));
 			if (usrCode2 == 0) {
 				Logger.error("UsrCode Not Found.");
 				isAborted = true;
@@ -10200,7 +10200,7 @@ public class VoucherCommon {
 			d40.setAcTotFlag('Y');
 			d40.setAcClrFlag('Y');
 			d40.setTokenNo(reconNo);
-			int usrCode2 = getUsrCodeNew("WEB", session);
+			int usrCode2 = Integer.parseInt(ConfigurationLoader.getParameters(false).getProperty("IMPS_USER"));
 			if (usrCode2 == 0) {
 				Logger.error("UsrCode Not Found.");
 				isAborted = true;
@@ -10527,7 +10527,7 @@ public class VoucherCommon {
 			d40.setAcTotFlag('Y');
 			d40.setAcClrFlag('Y');
 
-			int usrCode2 = getUsrCodeNew("WEB", session);
+			int usrCode2 = Integer.parseInt(ConfigurationLoader.getParameters(false).getProperty("IMPS_USER"));
 			if (usrCode2 == 0) {
 				Logger.error("UsrCode Not Found.");
 				isAborted = true;
@@ -10680,7 +10680,7 @@ public class VoucherCommon {
 			d40.setAcTotFlag('Y');
 			d40.setAcClrFlag('Y');
 
-			int usrCode2 = getUsrCodeNew("WEB", session);
+			int usrCode2 = Integer.parseInt(ConfigurationLoader.getParameters(false).getProperty("IMPS_USER"));
 			if (usrCode2 == 0) {
 				Logger.error("UsrCode Not Found.");
 				isAborted = true;

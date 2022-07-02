@@ -827,9 +827,9 @@ public class RTGSNEFTServiceImpl implements Serializable{
 					logger.error("Temp No:-"+tempUtrNo);
 					utrnoN="SRCB"+SwiftCoreUtil.appendZeroPadding(tempUtrNo.toString(),5l);	
 					if(narration==null || "".equalsIgnoreCase(narration))
-						narration="NEFT/"+transactionRequest.getToAccNo().trim()+"/"+transactionRequest.getToIfscCode().trim()+rRefNo+"/";
+						narration="NEFT/"+transactionRequest.getToAccNo().trim()+"/"+rRefNo+"/"+transactionRequest.getToIfscCode().trim();
 					else
-					    narration="NEFT/"+transactionRequest.getToAccNo().trim()+"/"+transactionRequest.getToIfscCode().trim()+"/"+rRefNo+"/"+narration;   //change by Manish.Commit on 28-Jan-2020
+					    narration="NEFT/"+transactionRequest.getToAccNo().trim()+"/"+rRefNo+"/"+transactionRequest.getToIfscCode().trim()+"/"+narration;   //change by Manish.Commit on 28-Jan-2020
 				}
 				logger.error("Temp No:-"+narration);
 				String accountNo8 = drAccountNo.substring(16,24);

@@ -495,7 +495,7 @@ public class ATMVoucher {
 			d40.setAcTotFlag('Y');
 			d40.setAcClrFlag('Y');
 
-			int usrCode2 = getUsrCodeNew("WEB", session);
+			int usrCode2 = Integer.parseInt(ConfigurationLoader.getParameters(false).getProperty("IMPS_USER"));
 
 			if (usrCode2 == 0) {
 				Logger.error("UsrCode Not Found.");
@@ -657,7 +657,7 @@ public class ATMVoucher {
 			d40.setAcTotFlag('Y');
 			d40.setAcClrFlag('Y');
 
-			int usrCode2 = getUsrCodeNew("WEB", session);
+			int usrCode2 = Integer.parseInt(ConfigurationLoader.getParameters(false).getProperty("IMPS_USER"));
 			if (usrCode2 == 0) {
 				Logger.error("UsrCode Not Found.");
 				isAborted = true;
@@ -817,7 +817,7 @@ public class ATMVoucher {
 			d40.setAcTotFlag('Y');
 			d40.setAcClrFlag('Y');
 
-			int usrCode2 = getUsrCodeNew("WEB", session);
+			int usrCode2 = Integer.parseInt(ConfigurationLoader.getParameters(false).getProperty("IMPS_USER"));
 			if (usrCode2 == 0) {
 				Logger.error("UsrCode Not Found.");
 				isAborted = true;
@@ -1274,7 +1274,7 @@ public class ATMVoucher {
 			d40.setAcTotFlag('Y');
 			d40.setAcClrFlag('Y');
 
-			int usrCode2 = getUsrCodeNew("WEB", session);
+			int usrCode2 = Integer.parseInt(ConfigurationLoader.getParameters(false).getProperty("IMPS_USER"));
 			if (usrCode2 == 0) {
 				Logger.error("UsrCode Not Found.");
 				isAborted = true;
@@ -1452,7 +1452,7 @@ public class ATMVoucher {
 			d40.setAcTotFlag('Y');
 			d40.setAcClrFlag('Y');
 
-			int usrCode2 = getUsrCodeNew("WEB", session);
+			int usrCode2 = Integer.parseInt(ConfigurationLoader.getParameters(false).getProperty("IMPS_USER"));
 			if (usrCode2 == 0) {
 				Logger.error("UsrCode Not Found.");
 				isAborted = true;
@@ -1594,7 +1594,7 @@ public class ATMVoucher {
 			d40.setAcClrFlag('Y');
 			d40.setTokenNo(reconNo);
 
-			int usrCode2 = getUsrCodeNew("WEB", session);
+			int usrCode2 = Integer.parseInt(ConfigurationLoader.getParameters(false).getProperty("IMPS_USER"));
 			if (usrCode2 == 0) {
 				Logger.error("UsrCode Not Found.");
 				isAborted = true;
@@ -1730,7 +1730,7 @@ public class ATMVoucher {
 			d40.setAcTotFlag('Y');
 			d40.setAcClrFlag('Y');
 			d40.setTokenNo(reconNo);
-			int usrCode2 = getUsrCodeNew("WEB", session);
+			int usrCode2 = Integer.parseInt(ConfigurationLoader.getParameters(false).getProperty("IMPS_USER"));
 			if (usrCode2 == 0) {
 				Logger.error("UsrCode Not Found.");
 				isAborted = true;
@@ -5585,7 +5585,7 @@ public class ATMVoucher {
 			d40.setAcTotFlag('Y');
 			d40.setAcClrFlag('Y');
 
-			int usrCode2 = getUsrCodeNew("WEB", session);
+			int usrCode2 = Integer.parseInt(ConfigurationLoader.getParameters(false).getProperty("IMPS_USER"));
 
 			if (usrCode2 == 0) {
 				Logger.error("UsrCode Not Found.");
