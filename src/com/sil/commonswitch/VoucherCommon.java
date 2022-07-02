@@ -11326,6 +11326,8 @@ public class VoucherCommon {
 		String ChargeType = ConfigurationLoader.getParameters(false).getProperty("IMPS_CHARGE_TYPE").trim();
 		int insType = Integer
 				.parseInt(ConfigurationLoader.getParameters(false).getProperty("IMPS_CHG_INST_TYPE").trim());
+		
+		String gstChargeType = ConfigurationLoader.getParameters(false).getProperty("IMPS_GST_CHARGE_TYPE").trim();
 
 		if (READSCHGREC.getValue().trim().equalsIgnoreCase("N")) {
 
@@ -11361,7 +11363,7 @@ public class VoucherCommon {
 			 * =d130031.getEduCesRate() / 100; logger.error("serTaxRate::>>" + serTaxRate);
 			 * logger.error("eduCharges::>>" + eduCharges);
 			 */
-			List<GstChargesMaster> gstChargesMasters = DataUtils.getLatestCharge(ChargeType, drOperationDate);
+			List<GstChargesMaster> gstChargesMasters = DataUtils.getLatestCharge(gstChargeType, drOperationDate);
 
 			if (!gstChargesMasters.isEmpty()) {
 				GstChargesMaster gstChargesMaster = gstChargesMasters.get(0);
@@ -11425,7 +11427,7 @@ public class VoucherCommon {
 			 * logger.error("eduCharges::>>" + eduCharges);
 			 */
 
-			List<GstChargesMaster> gstChargesMasters = DataUtils.getLatestCharge(ChargeType, drOperationDate);
+			List<GstChargesMaster> gstChargesMasters = DataUtils.getLatestCharge(gstChargeType, drOperationDate);
 			Map<String, Object> responseMap = new HashMap();
 			// responseMap.put("sgstCharge", 0);
 			// responseMap.put("cgstCharge", 0);
@@ -11753,6 +11755,9 @@ public class VoucherCommon {
 		String ChargeType = ConfigurationLoader.getParameters(false).getProperty("IMPS_CHARGE_TYPE").trim();
 		int insType = Integer
 				.parseInt(ConfigurationLoader.getParameters(false).getProperty("IMPS_CHG_INST_TYPE").trim());
+		
+		String gstChargeType = ConfigurationLoader.getParameters(false).getProperty("IMPS_GST_CHARGE_TYPE").trim();
+
 
 		if (READSCHGREC.getValue().trim().equalsIgnoreCase("N")) {
 
@@ -11788,7 +11793,7 @@ public class VoucherCommon {
 			 * =d130031.getEduCesRate() / 100; logger.error("serTaxRate::>>" + serTaxRate);
 			 * logger.error("eduCharges::>>" + eduCharges);
 			 */
-			List<GstChargesMaster> gstChargesMasters = DataUtils.getLatestCharge(ChargeType, drOperationDate);
+			List<GstChargesMaster> gstChargesMasters = DataUtils.getLatestCharge(gstChargeType, drOperationDate);
 
 			if (!gstChargesMasters.isEmpty()) {
 				GstChargesMaster gstChargesMaster = gstChargesMasters.get(0);
@@ -11853,7 +11858,7 @@ public class VoucherCommon {
 			 * logger.error("eduCharges::>>" + eduCharges);
 			 */
 
-			List<GstChargesMaster> gstChargesMasters = DataUtils.getLatestCharge(ChargeType, drOperationDate);
+			List<GstChargesMaster> gstChargesMasters = DataUtils.getLatestCharge(gstChargeType, drOperationDate);
 			Map<String, Object> responseMap = new HashMap();
 			// responseMap.put("sgstCharge", 0);
 			// responseMap.put("cgstCharge", 0);
