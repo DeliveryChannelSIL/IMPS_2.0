@@ -46,6 +46,7 @@ import com.sil.hbm.IBFundTransactionRequest;
 import com.sil.hbm.RtgsCutoffParameter;
 import com.sil.hbm.RtgsNeftRefNo;
 import com.sil.hbm.RtgsNeftRefNoId;
+import com.sil.operation.CoreBankingOperationImpl;
 import com.sil.prop.ConfigurationLoader;
 import com.sil.service.TransactionServiceImpl;
 import com.sil.util.DateUtil;
@@ -946,9 +947,12 @@ public class RTGSNEFTServiceImpl implements Serializable{
 						remId.setLbrCode(lbrcode);
 						remId.setPrdAcctId(drAccountNo);
 						D009022 remAcct = session.get(D009022.class, remId);
-												
-							Double chgAmount = Double.valueOf(
-									ConfigurationLoader.getParameters(false).getProperty("NEFT_P2A_CHG_AMOUNT").trim());
+						Double chgAmount = 0.0;
+						if("Y".equalsIgnoreCase(ConfigurationLoader.getParameters(false).getProperty("NEFT_P2A_CHG_AMOUNT_SLAB_YN"))) {
+							chgAmount = CoreBankingOperationImpl.getFlatAmtForMsgType(amount,"N06",session);
+						}else
+							chgAmount = Double.valueOf(
+								ConfigurationLoader.getParameters(false).getProperty("NEFT_P2A_CHG_AMOUNT").trim());
 							if("S".equalsIgnoreCase(ConfigurationLoader.getParameters(false).getProperty("NEFT_SER_OR_GST_CHG"))) {
 								result2 = VoucherCommon.serviceChargeVoucherEntry(lbrcode, referenceNo, session, drAccountNo,
 										"NEFT Charges/" + referenceNo, chgAmount, amount);

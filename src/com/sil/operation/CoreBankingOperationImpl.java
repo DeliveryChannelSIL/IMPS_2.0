@@ -1419,7 +1419,7 @@ public class CoreBankingOperationImpl implements CoreBankingOperation {
 
 	}
 	
-	public Double getFlatAmtForMsgType(Double transAmt, String msgType, Session session) {
+	public static Double getFlatAmtForMsgType(Double transAmt, String msgType, Session session) {
 		Double amt = 0.0;
 		
 		/*String queryString = "\r\n" + 
