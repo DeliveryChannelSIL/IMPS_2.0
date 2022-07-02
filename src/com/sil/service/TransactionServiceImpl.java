@@ -4110,6 +4110,7 @@ public class TransactionServiceImpl {
 				}
 			}
 			D010010 instrument = DataUtils.getInstDetailsForStop(lbrCode, acctNo, insType, chequeNo);
+			logger.error("Instrument:-"+instrument);
 			if (null != instrument) {
 				if (instrument.getRevokeFlag() != Byte.valueOf("1")) {
 					logger.error("Entered cheque is already stopped, Please visit your branch for more details.");
@@ -4128,13 +4129,14 @@ public class TransactionServiceImpl {
 				}
 			}
 			D001004 system = DataUtils.getSystemParameter(lbrCode, "LASTOPENDATE");
+			logger.error("LASTOPENDATE:-"+system.toString());
 			Date drOperationDate = DateUtil.getDateFromStringNew(system.getValue().trim().substring(1));
 			instrument = DataUtils.prepareStopPaymentObj(lbrCode, acctNo, chequeNo, Short.valueOf(insType + ""),
 					"STOPED BY IMPS", remark, 10.0);
 			// instrumentService.saveInstrumentObject(instrument);
-
+			logger.error("Instrument2:-"+instrument.toString());
 			/** Update status as 1(stop payment) */
-
+			
 			issuedInstruments = null;
 
 			stopPaymentRes.setResponse(MSGConstants.SUCCESS);
