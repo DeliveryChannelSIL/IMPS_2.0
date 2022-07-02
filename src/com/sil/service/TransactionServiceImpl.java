@@ -3028,12 +3028,12 @@ public class TransactionServiceImpl {
 				String resp = "";
 				if("VPA".equalsIgnoreCase(request.getOperator())) {
 					resp = impl.initiateBillPayment(
-							accNo15digit, MSGConstants.TRANS_TYPE, "VPA-" + request.getConsumerNo().trim() + "-"
+							accNo15digit, MSGConstants.TRANS_TYPE, "VPA-" + accNo15digit + "-"
 									+ DateUtil.getcurrentDateString() + "-" + narration,
 							Double.valueOf(amount), rrn, mob1, mmid1, mob2, mmid2, request.getOperator(), request);
 				}else
 				 resp = impl.initiateBillPayment(
-						accNo15digit, MSGConstants.TRANS_TYPE, "IMPS-P2M-" + request.getConsumerNo().trim() + "-"
+						accNo15digit, MSGConstants.TRANS_TYPE, "IMPS-P2M-" + accNo15digit + "-"
 								+ DateUtil.getcurrentDateString() + "-" + narration,
 						Double.valueOf(amount), rrn, mob1, mmid1, mob2, mmid2, request.getOperator(), request);
 				impl = null;
