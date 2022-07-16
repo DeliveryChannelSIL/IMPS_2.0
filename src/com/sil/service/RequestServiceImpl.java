@@ -567,15 +567,27 @@ public class RequestServiceImpl {
 		criteria.add(Restrictions.eq("custNo", Integer.valueOf(custId.trim())));
 		criteria.add(Restrictions.eq("cardNo", cardId.trim()));
 		List<D390075> list = criteria.list();
-		t.commit();
-		session.close();
-		session = null;
-		t = null;
+		
 		if (list != null && list.size() > 0) {
 			customerDetails.setResponse(MSGConstants.SUCCESS);
 			customerDetails.setErrorMsg(MSGConstants.SUCCESS_MSG);
 			return customerDetails;
+		}else {
+			String query = "SELECT a FROM D009022 a INNER JOIN D390061 c ON a.id.lbrCode=c.lbrCode AND a.id.prdAcctId=c.prdAcctId\r\n" +  
+					"WHERE a.custNo=? and c.id.cardId=?";
+			
+			List<D009022> queryObject = session.createQuery(query).setInteger(0, Integer.valueOf(custId.trim())).setString(1, cardId.trim()).list();
+			if (queryObject != null && queryObject.size() > 0) {
+				customerDetails.setResponse(MSGConstants.SUCCESS);
+				customerDetails.setErrorMsg(MSGConstants.SUCCESS_MSG);
+				return customerDetails;
+			}
 		}
+		
+		t.commit();
+		session.close();
+		session = null;
+		t = null;
 		customerDetails.setResponse(MSGConstants.ERROR);
 		customerDetails.setErrorMsg(MSGConstants.RECORD_NOT_FOUND);
 		return customerDetails;
