@@ -11323,6 +11323,7 @@ public class VoucherCommon {
 		Date drOperationDate = getOpenDateNew(lbrCode, session);
 
 		D001004 READSCHGREC = DataUtils.getSystemParameter(lbrCode, "READSCHGREC");
+
 		String ChargeType = "";
 		int insType;
 		String gstChargeType = "";
@@ -11778,6 +11779,7 @@ public class VoucherCommon {
 			ChargeType = ConfigurationLoader.getParameters(false).getProperty("IMPS_CHARGE_TYPE").trim();
 			insType = Integer
 					.parseInt(ConfigurationLoader.getParameters(false).getProperty("IMPS_CHG_INST_TYPE").trim());
+
 
 			gstChargeType = ConfigurationLoader.getParameters(false).getProperty("IMPS_GST_CHARGE_TYPE").trim();
 
