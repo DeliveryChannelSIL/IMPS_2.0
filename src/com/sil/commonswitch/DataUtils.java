@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.net.InetSocketAddress;
 import java.net.Socket;
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
@@ -36,6 +37,7 @@ import org.hibernate.criterion.Expression;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
+import org.hibernate.jdbc.Work;
 import org.hibernate.resource.transaction.spi.TransactionStatus;
 import org.hibernate.transform.Transformers;
 import org.pmw.tinylog.Logger;
@@ -850,6 +852,13 @@ public class DataUtils {
 		logger.error("lbrCode::>>" + lbrCode);
 		logger.error("prodCode::>>>" + prodCode);
 		Session session = HBUtil.getSessionFactory().openSession();
+		session.doWork(new Work() {
+            @Override
+            public void execute(Connection connection) throws SQLException {
+                connection.setTransactionIsolation(Connection.TRANSACTION_READ_UNCOMMITTED);
+            }
+        });
+		//session.connection().setTransactionIsolation(Connection.TRANSACTION_READ_UNCOMMITTED);
 		D009021Id id = new D009021Id();
 		id.setLbrCode(Integer.valueOf(lbrCode));
 		id.setPrdCd(prodCode);
@@ -2493,11 +2502,11 @@ public class DataUtils {
 		if (ConfigurationLoader.getParameters(false).getProperty("DATABASE").equalsIgnoreCase("ORACLE"))
 			q = session
 				.createQuery("from D009022 where CustNo='" + lbrCode + "' and rtrim(substr(PrdAcctId, 0 ,8)) in ('"
-						+ depositeType + "') and AcctStat not in(3 ,4 ,5 ,97) order by LBrCode, PrdAcctId ");
+						+ depositeType + "') and AcctStat not in(3 ,4 ,5 ,97) and ActTotBalFcy > 0  order by LBrCode, PrdAcctId ");
 		else
 			q = session
 			.createQuery("from D009022 where CustNo='" + lbrCode + "' and rtrim(substring(PrdAcctId, 0 ,8)) in ('"
-					+ depositeType + "') and AcctStat not in(3 ,4 ,5 ,97) order by LBrCode, PrdAcctId ");
+					+ depositeType + "') and AcctStat not in(3 ,4 ,5 ,97) and ActTotBalFcy > 0 order by LBrCode, PrdAcctId ");
 		List<D009022> list = q.list();
 		session.close();
 		session = null;
@@ -7712,5 +7721,19 @@ public class DataUtils {
 			// TODO: handle exception
 		}
 		return null;
+	}
+	
+	public static D009021 getProductMaster(String lbrCode, String prodCode, Session session) {
+		logger.error("lbrCode::>>" + lbrCode);
+		logger.error("prodCode::>>>" + prodCode);
+		//Session session = HBUtil.getSessionFactory().openSession();
+		D009021Id id = new D009021Id();
+		id.setLbrCode(Integer.valueOf(lbrCode));
+		id.setPrdCd(prodCode);
+		D009021 list = session.get(D009021.class, id);
+		id = null;
+		//session.close();
+		//session = null;
+		return list;
 	}
 }

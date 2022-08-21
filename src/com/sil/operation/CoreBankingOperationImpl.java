@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
@@ -564,12 +565,16 @@ public class CoreBankingOperationImpl implements CoreBankingOperation {
 								.parseInt(ConfigurationLoader.getParameters(false).getProperty("IMPS_CHG_TRN_LIMIT"));
 						if ((VoucherCommon.getTransactionsInAMonth(mob1, mmid1, session)) >= count
 								&& !MSGConstants.acctTypeList.contains((long) remAcct.getAcctType())) {
-							Double chgAmount = Double.valueOf(
+							Double chgAmount = 0.0;
+							if("Y".equalsIgnoreCase(ConfigurationLoader.getParameters(false).getProperty("IMPS_P2A_CHG_AMOUNT_SLAB_YN"))) {
+								chgAmount = getFlatAmtForMsgType(amount,"P2A",session);
+							}else
+								chgAmount = Double.valueOf(
 									ConfigurationLoader.getParameters(false).getProperty("IMPS_P2A_CHG_AMOUNT").trim());
 							if ("S".equalsIgnoreCase(
 									ConfigurationLoader.getParameters(false).getProperty("IMPS_SER_OR_GST_CHG"))) {
 								result2 = VoucherCommon.serviceChgRevVoucherEntry(lbrcode, rrn, session, acctno32digit,
-										"IMPS Charges/P2A/" + rrn, chgAmount);
+										"REV/IMPS Charges/P2A/" + rrn, chgAmount);
 							} else {
 								result2 = VoucherCommon.gstRevVoucherEntry(lbrcode, rrn, session, acctno32digit,
 										"REV/IMPS Charges/P2A/" + rrn, chgAmount);
@@ -1343,7 +1348,11 @@ public class CoreBankingOperationImpl implements CoreBankingOperation {
 								.parseInt(ConfigurationLoader.getParameters(false).getProperty("IMPS_CHG_TRN_LIMIT"));
 						if (VoucherCommon.getTransactionsInAMonth(mob1, mmid1, session) >= count
 								&& !MSGConstants.acctTypeList.contains((long) remAcct.getAcctType())) {
-							Double chgAmount = Double.valueOf(
+							Double chgAmount = 0.0;
+							if("Y".equalsIgnoreCase(ConfigurationLoader.getParameters(false).getProperty("IMPS_P2A_CHG_AMOUNT_SLAB_YN"))) {
+								chgAmount = getFlatAmtForMsgType(amount,"P2A",session);
+							}else
+								chgAmount = Double.valueOf(
 									ConfigurationLoader.getParameters(false).getProperty("IMPS_P2A_CHG_AMOUNT").trim());
 							if ("S".equalsIgnoreCase(
 									ConfigurationLoader.getParameters(false).getProperty("IMPS_SER_OR_GST_CHG"))) {
@@ -1408,5 +1417,42 @@ public class CoreBankingOperationImpl implements CoreBankingOperation {
 		logger.error("Result:>>>" + result);
 		return result;
 
+	}
+	
+	public static Double getFlatAmtForMsgType(Double transAmt, String msgType, Session session) {
+		Double amt = 0.0;
+		
+		/*String queryString = "\r\n" + 
+				"SELECT t.flatRateAmt\r\n" + 
+				"from D946124 t\r\n" + 
+				"inner join (\r\n" + 
+				"select id.msgSType, max(id.effDate) as MaxDate\r\n" + 
+				"    from D946124 WHERE id.msgSType=:msgType\r\n" +  
+				"    group by id.msgSType\r\n" +  
+				") tm on t.id.msgSType = tm.id.msgSType and t.id.effDate = tm.MaxDate \r\n" +  
+				"WHERE\r\n" + 
+				" 	t.id.msgSType=:msgType AND uptoAmt>:amt ORDER BY uptoAmt ASC";*/
+		
+		String queryString = "SELECT TOP 1 t.FlatRateAmt\r\n" + 
+				"\r\n" + 
+				"from D946124 t\r\n" + 
+				"\r\n" + 
+				"inner join (\r\n" + 
+				"\r\n" + 
+				"    select MsgSType, max(EffDate) as MaxDate\r\n" + 
+				"\r\n" + 
+				"    from D946124 WHERE MsgSType='"+msgType+"'\r\n" + 
+				"\r\n" + 
+				"    group by MsgSType\r\n" + 
+				"\r\n" + 
+				") tm on t.MsgSType = tm.MsgSType and t.EffDate = tm.MaxDate \r\n" + 
+				"\r\n" + 
+				"WHERE\r\n" + 
+				" 	t.MsgSType='"+msgType+"' AND UptoAmt>"+transAmt+" ORDER BY UptoAmt ASC";
+		
+		Query q = session.createSQLQuery(queryString);
+		amt = (Double) q.getSingleResult();
+		
+		return amt;
 	}
 }

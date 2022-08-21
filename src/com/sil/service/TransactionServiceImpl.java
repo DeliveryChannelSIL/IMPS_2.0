@@ -3028,12 +3028,12 @@ public class TransactionServiceImpl {
 				String resp = "";
 				if("VPA".equalsIgnoreCase(request.getOperator())) {
 					resp = impl.initiateBillPayment(
-							accNo15digit, MSGConstants.TRANS_TYPE, "VPA-" + request.getConsumerNo().trim() + "-"
+							accNo15digit, MSGConstants.TRANS_TYPE, "VPA-" + accNo15digit + "-"
 									+ DateUtil.getcurrentDateString() + "-" + narration,
 							Double.valueOf(amount), rrn, mob1, mmid1, mob2, mmid2, request.getOperator(), request);
 				}else
 				 resp = impl.initiateBillPayment(
-						accNo15digit, MSGConstants.TRANS_TYPE, "IMPS-P2M-" + request.getConsumerNo().trim() + "-"
+						accNo15digit, MSGConstants.TRANS_TYPE, "IMPS-P2M-" + accNo15digit + "-"
 								+ DateUtil.getcurrentDateString() + "-" + narration,
 						Double.valueOf(amount), rrn, mob1, mmid1, mob2, mmid2, request.getOperator(), request);
 				impl = null;
@@ -4110,6 +4110,7 @@ public class TransactionServiceImpl {
 				}
 			}
 			D010010 instrument = DataUtils.getInstDetailsForStop(lbrCode, acctNo, insType, chequeNo);
+			logger.error("Instrument:-"+instrument);
 			if (null != instrument) {
 				if (instrument.getRevokeFlag() != Byte.valueOf("1")) {
 					logger.error("Entered cheque is already stopped, Please visit your branch for more details.");
@@ -4128,13 +4129,14 @@ public class TransactionServiceImpl {
 				}
 			}
 			D001004 system = DataUtils.getSystemParameter(lbrCode, "LASTOPENDATE");
+			logger.error("LASTOPENDATE:-"+system.toString());
 			Date drOperationDate = DateUtil.getDateFromStringNew(system.getValue().trim().substring(1));
 			instrument = DataUtils.prepareStopPaymentObj(lbrCode, acctNo, chequeNo, Short.valueOf(insType + ""),
 					"STOPED BY IMPS", remark, 10.0);
 			// instrumentService.saveInstrumentObject(instrument);
-
+			logger.error("Instrument2:-"+instrument.toString());
 			/** Update status as 1(stop payment) */
-
+			
 			issuedInstruments = null;
 
 			stopPaymentRes.setResponse(MSGConstants.SUCCESS);
@@ -4171,6 +4173,7 @@ public class TransactionServiceImpl {
 
 			D001004 READSCHGREC = DataUtils.getSystemParameter(lbrCode, "READSCHGREC");
 			String ChargeType = ConfigurationLoader.getParameters(false).getProperty("CHEQUE_STOP_CHARGE_TYPE").trim();
+			String gstChargeType = ConfigurationLoader.getParameters(false).getProperty("CHEQUE_STOP_GST_CHARGE_TYPE").trim();
 			if (READSCHGREC.getValue().trim().equalsIgnoreCase("N")) {
 
 				D130001 d130001 = DataUtils.getstopChequeCharges(lbrCode, ChargeType, insType + "");// chgType=2
@@ -4204,7 +4207,7 @@ public class TransactionServiceImpl {
 				 * =d130031.getEduCesRate() / 100; logger.error("serTaxRate::>>" +
 				 * serTaxRate); logger.error("eduCharges::>>" + eduCharges);
 				 */
-				List<GstChargesMaster> gstChargesMasters = DataUtils.getLatestCharge(ChargeType, drOperationDate);
+				List<GstChargesMaster> gstChargesMasters = DataUtils.getLatestCharge(gstChargeType, drOperationDate);
 
 				if (!gstChargesMasters.isEmpty()) {
 					GstChargesMaster gstChargesMaster = gstChargesMasters.get(0);
@@ -4259,7 +4262,7 @@ public class TransactionServiceImpl {
 				 * serTaxRate); logger.error("eduCharges::>>" + eduCharges);
 				 */
 
-				List<GstChargesMaster> gstChargesMasters = DataUtils.getLatestCharge(ChargeType, drOperationDate);
+				List<GstChargesMaster> gstChargesMasters = DataUtils.getLatestCharge(gstChargeType, drOperationDate);
 				Map<String, Object> responseMap = new HashMap();
 				// responseMap.put("sgstCharge", 0);
 				// responseMap.put("cgstCharge", 0);

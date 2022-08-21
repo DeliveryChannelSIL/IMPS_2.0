@@ -659,6 +659,8 @@ public class ChequeBookRequest {
 			{
 				d010080.setSignTitle(Byte.valueOf("99"));
 			}
+			
+			logger.error(d010080.toString());
 			Session session = HBUtil.getSessionFactory().openSession();
 			Transaction tx = session.beginTransaction();
 			try{

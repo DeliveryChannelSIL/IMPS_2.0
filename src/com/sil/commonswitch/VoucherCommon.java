@@ -568,7 +568,7 @@ public class VoucherCommon {
 			d40.setAcTotFlag('Y');
 			d40.setAcClrFlag('Y');
 
-			int usrCode2 = getUsrCodeNew("WEB", session);
+			int usrCode2 = Integer.parseInt(ConfigurationLoader.getParameters(false).getProperty("IMPS_USER"));
 
 			if (usrCode2 == 0) {
 				Logger.error("UsrCode Not Found.");
@@ -740,7 +740,7 @@ public class VoucherCommon {
 			d40.setAcTotFlag('Y');
 			d40.setAcClrFlag('Y');
 
-			int usrCode2 = getUsrCodeNew("WEB", session);
+			int usrCode2 = Integer.parseInt(ConfigurationLoader.getParameters(false).getProperty("IMPS_USER"));
 			if (usrCode2 == 0) {
 				Logger.error("UsrCode Not Found.");
 				isAborted = true;
@@ -863,7 +863,7 @@ public class VoucherCommon {
 			d40.setAcTotFlag('Y');
 			d40.setAcClrFlag('Y');
 
-			int usrCode2 = getUsrCodeNew("WEB", session);
+			int usrCode2 = Integer.parseInt(ConfigurationLoader.getParameters(false).getProperty("IMPS_USER"));
 			if (usrCode2 == 0) {
 				Logger.error("UsrCode Not Found.");
 				isAborted = true;
@@ -1380,7 +1380,7 @@ public class VoucherCommon {
 			d40.setAcTotFlag('Y');
 			d40.setAcClrFlag('Y');
 
-			int usrCode2 = getUsrCodeNew("WEB", session);
+			int usrCode2 = Integer.parseInt(ConfigurationLoader.getParameters(false).getProperty("IMPS_USER"));
 			if (usrCode2 == 0) {
 				Logger.error("UsrCode Not Found.");
 				isAborted = true;
@@ -1533,7 +1533,7 @@ public class VoucherCommon {
 			d40.setAcTotFlag('Y');
 			d40.setAcClrFlag('Y');
 
-			int usrCode2 = getUsrCodeNew("WEB", session);
+			int usrCode2 = Integer.parseInt(ConfigurationLoader.getParameters(false).getProperty("IMPS_USER"));
 			if (usrCode2 == 0) {
 				Logger.error("UsrCode Not Found.");
 				isAborted = true;
@@ -1703,7 +1703,7 @@ public class VoucherCommon {
 			d40.setAcClrFlag('Y');
 			d40.setTokenNo(reconNo);
 
-			int usrCode2 = getUsrCodeNew("WEB", session);
+			int usrCode2 = Integer.parseInt(ConfigurationLoader.getParameters(false).getProperty("IMPS_USER"));
 			if (usrCode2 == 0) {
 				Logger.error("UsrCode Not Found.");
 				isAborted = true;
@@ -1838,7 +1838,7 @@ public class VoucherCommon {
 			d40.setAcTotFlag('Y');
 			d40.setAcClrFlag('Y');
 			d40.setTokenNo(reconNo);
-			int usrCode2 = getUsrCodeNew("WEB", session);
+			int usrCode2 = Integer.parseInt(ConfigurationLoader.getParameters(false).getProperty("IMPS_USER"));
 			if (usrCode2 == 0) {
 				Logger.error("UsrCode Not Found.");
 				isAborted = true;
@@ -7887,7 +7887,7 @@ public class VoucherCommon {
 			d40.setAcTotFlag('Y');
 			d40.setAcClrFlag('Y');
 
-			int usrCode2 = getUsrCodeNew("WEB", session);
+			int usrCode2 = Integer.parseInt(ConfigurationLoader.getParameters(false).getProperty("IMPS_USER"));
 
 			if (usrCode2 == 0) {
 				Logger.error("UsrCode Not Found.");
@@ -9006,7 +9006,7 @@ public class VoucherCommon {
 										logger.error("ABB Transaction successful");
 
 										creditVoucher = common.rtgsNeftCredit(benBrCode, benAccNo, MSGConstants.ABB,
-												setNoABB, scrollNoAbb1, "OBr=" + lbrCode + " " + narration, amount, rrn,
+												setNoABB, scrollNoAbb1, "OBr=" + lbrCode + "-"+accNo.substring(0,8).trim()+"-"+Integer.parseInt(accNo.substring(16, 24))+"/" + narration, amount, rrn,
 												session);
 										if (!common.isAborted) {
 											/*** Added By Aniket Desai for 24X7 on 3rd Jan, 2020 ***/
@@ -9346,7 +9346,7 @@ public class VoucherCommon {
 			d40.setAcTotFlag('Y');
 			d40.setAcClrFlag('Y');
 
-			int usrCode2 = getUsrCodeNew("WEB", session);
+			int usrCode2 = Integer.parseInt(ConfigurationLoader.getParameters(false).getProperty("IMPS_USER"));
 			if (usrCode2 == 0) {
 				Logger.error("UsrCode Not Found.");
 				isAborted = true;
@@ -9516,7 +9516,7 @@ public class VoucherCommon {
 			d40.setAcTotFlag('Y');
 			d40.setAcClrFlag('Y');
 
-			int usrCode2 = getUsrCodeNew("WEB", session);
+			int usrCode2 = Integer.parseInt(ConfigurationLoader.getParameters(false).getProperty("IMPS_USER"));
 			if (usrCode2 == 0) {
 				Logger.error("UsrCode Not Found.");
 				isAborted = true;
@@ -9891,7 +9891,7 @@ public class VoucherCommon {
 			d40.setAcTotFlag('Y');
 			d40.setAcClrFlag('Y');
 
-			int usrCode2 = getUsrCodeNew("WEB", session);
+			int usrCode2 = Integer.parseInt(ConfigurationLoader.getParameters(false).getProperty("IMPS_USER"));
 
 			if (usrCode2 == 0) {
 				Logger.error("UsrCode Not Found.");
@@ -10062,7 +10062,7 @@ public class VoucherCommon {
 			d40.setAcClrFlag('Y');
 			d40.setTokenNo(reconNo);
 
-			int usrCode2 = getUsrCodeNew("WEB", session);
+			int usrCode2 = Integer.parseInt(ConfigurationLoader.getParameters(false).getProperty("IMPS_USER"));
 			if (usrCode2 == 0) {
 				Logger.error("UsrCode Not Found.");
 				isAborted = true;
@@ -10200,7 +10200,7 @@ public class VoucherCommon {
 			d40.setAcTotFlag('Y');
 			d40.setAcClrFlag('Y');
 			d40.setTokenNo(reconNo);
-			int usrCode2 = getUsrCodeNew("WEB", session);
+			int usrCode2 = Integer.parseInt(ConfigurationLoader.getParameters(false).getProperty("IMPS_USER"));
 			if (usrCode2 == 0) {
 				Logger.error("UsrCode Not Found.");
 				isAborted = true;
@@ -10527,7 +10527,7 @@ public class VoucherCommon {
 			d40.setAcTotFlag('Y');
 			d40.setAcClrFlag('Y');
 
-			int usrCode2 = getUsrCodeNew("WEB", session);
+			int usrCode2 = Integer.parseInt(ConfigurationLoader.getParameters(false).getProperty("IMPS_USER"));
 			if (usrCode2 == 0) {
 				Logger.error("UsrCode Not Found.");
 				isAborted = true;
@@ -10680,7 +10680,7 @@ public class VoucherCommon {
 			d40.setAcTotFlag('Y');
 			d40.setAcClrFlag('Y');
 
-			int usrCode2 = getUsrCodeNew("WEB", session);
+			int usrCode2 = Integer.parseInt(ConfigurationLoader.getParameters(false).getProperty("IMPS_USER"));
 			if (usrCode2 == 0) {
 				Logger.error("UsrCode Not Found.");
 				isAborted = true;
@@ -11323,10 +11323,27 @@ public class VoucherCommon {
 		Date drOperationDate = getOpenDateNew(lbrCode, session);
 
 		D001004 READSCHGREC = DataUtils.getSystemParameter(lbrCode, "READSCHGREC");
-		String ChargeType = ConfigurationLoader.getParameters(false).getProperty("IMPS_CHARGE_TYPE").trim();
-		int insType = Integer
-				.parseInt(ConfigurationLoader.getParameters(false).getProperty("IMPS_CHG_INST_TYPE").trim());
 
+		String ChargeType = "";
+		int insType;
+		String gstChargeType = "";
+		if("NEFT".equals(narration.substring(0, 4))) {
+			ChargeType = ConfigurationLoader.getParameters(false).getProperty("NEFT_CHARGE_TYPE").trim();
+			insType = Integer
+					.parseInt(ConfigurationLoader.getParameters(false).getProperty("NEFT_CHG_INST_TYPE").trim());
+			gstChargeType = ConfigurationLoader.getParameters(false).getProperty("NEFT_GST_CHARGE_TYPE").trim();
+		}else {
+			ChargeType = ConfigurationLoader.getParameters(false).getProperty("IMPS_CHARGE_TYPE").trim();
+			insType = Integer
+					.parseInt(ConfigurationLoader.getParameters(false).getProperty("IMPS_CHG_INST_TYPE").trim());
+
+			gstChargeType = ConfigurationLoader.getParameters(false).getProperty("IMPS_GST_CHARGE_TYPE").trim();
+
+		}
+			
+		
+		
+		
 		if (READSCHGREC.getValue().trim().equalsIgnoreCase("N")) {
 
 			D130001 d130001 = DataUtils.getstopChequeCharges(lbrCode, ChargeType, insType + "");// chgType=2
@@ -11361,7 +11378,7 @@ public class VoucherCommon {
 			 * =d130031.getEduCesRate() / 100; logger.error("serTaxRate::>>" + serTaxRate);
 			 * logger.error("eduCharges::>>" + eduCharges);
 			 */
-			List<GstChargesMaster> gstChargesMasters = DataUtils.getLatestCharge(ChargeType, drOperationDate);
+			List<GstChargesMaster> gstChargesMasters = DataUtils.getLatestCharge(gstChargeType, drOperationDate);
 
 			if (!gstChargesMasters.isEmpty()) {
 				GstChargesMaster gstChargesMaster = gstChargesMasters.get(0);
@@ -11425,7 +11442,7 @@ public class VoucherCommon {
 			 * logger.error("eduCharges::>>" + eduCharges);
 			 */
 
-			List<GstChargesMaster> gstChargesMasters = DataUtils.getLatestCharge(ChargeType, drOperationDate);
+			List<GstChargesMaster> gstChargesMasters = DataUtils.getLatestCharge(gstChargeType, drOperationDate);
 			Map<String, Object> responseMap = new HashMap();
 			// responseMap.put("sgstCharge", 0);
 			// responseMap.put("cgstCharge", 0);
@@ -11532,7 +11549,7 @@ public class VoucherCommon {
 
 		String sgstCreditAcctId = null, cgstCreditAcctId = null;
 		String cgstCreditPrdCd = null;
-		List<GstChargesMaster> gstChargesMasters = DataUtils.getLatestCharge(ChargeType, drOperationDate);
+		List<GstChargesMaster> gstChargesMasters = DataUtils.getLatestCharge(gstChargeType, drOperationDate);
 		if (!gstChargesMasters.isEmpty()) {
 			GstChargesMaster gstChargesMaster = gstChargesMasters.get(0);
 			sgstCreditAcctId = gstChargesMaster.getSgstacctid();
@@ -11750,10 +11767,25 @@ public class VoucherCommon {
 		Date drOperationDate = getOpenDateNew(lbrCode, session);
 
 		D001004 READSCHGREC = DataUtils.getSystemParameter(lbrCode, "READSCHGREC");
-		String ChargeType = ConfigurationLoader.getParameters(false).getProperty("IMPS_CHARGE_TYPE").trim();
-		int insType = Integer
-				.parseInt(ConfigurationLoader.getParameters(false).getProperty("IMPS_CHG_INST_TYPE").trim());
+		String ChargeType = "";
+		int insType;
+		String gstChargeType = "";
+		if("NEFT".equals(narration.substring(0, 4))) {
+			ChargeType = ConfigurationLoader.getParameters(false).getProperty("NEFT_CHARGE_TYPE").trim();
+			insType = Integer
+					.parseInt(ConfigurationLoader.getParameters(false).getProperty("NEFT_CHG_INST_TYPE").trim());
+			gstChargeType = ConfigurationLoader.getParameters(false).getProperty("NEFT_GST_CHARGE_TYPE").trim();
+		}else {
+			ChargeType = ConfigurationLoader.getParameters(false).getProperty("IMPS_CHARGE_TYPE").trim();
+			insType = Integer
+					.parseInt(ConfigurationLoader.getParameters(false).getProperty("IMPS_CHG_INST_TYPE").trim());
 
+
+			gstChargeType = ConfigurationLoader.getParameters(false).getProperty("IMPS_GST_CHARGE_TYPE").trim();
+
+		}
+		 
+		
 		if (READSCHGREC.getValue().trim().equalsIgnoreCase("N")) {
 
 			D130001 d130001 = DataUtils.getstopChequeCharges(lbrCode, ChargeType, insType + "");// chgType=2
@@ -11788,7 +11820,7 @@ public class VoucherCommon {
 			 * =d130031.getEduCesRate() / 100; logger.error("serTaxRate::>>" + serTaxRate);
 			 * logger.error("eduCharges::>>" + eduCharges);
 			 */
-			List<GstChargesMaster> gstChargesMasters = DataUtils.getLatestCharge(ChargeType, drOperationDate);
+			List<GstChargesMaster> gstChargesMasters = DataUtils.getLatestCharge(gstChargeType, drOperationDate);
 
 			if (!gstChargesMasters.isEmpty()) {
 				GstChargesMaster gstChargesMaster = gstChargesMasters.get(0);
@@ -11853,7 +11885,7 @@ public class VoucherCommon {
 			 * logger.error("eduCharges::>>" + eduCharges);
 			 */
 
-			List<GstChargesMaster> gstChargesMasters = DataUtils.getLatestCharge(ChargeType, drOperationDate);
+			List<GstChargesMaster> gstChargesMasters = DataUtils.getLatestCharge(gstChargeType, drOperationDate);
 			Map<String, Object> responseMap = new HashMap();
 			// responseMap.put("sgstCharge", 0);
 			// responseMap.put("cgstCharge", 0);
@@ -11960,7 +11992,7 @@ public class VoucherCommon {
 
 		String sgstCreditAcctId = null, cgstCreditAcctId = null;
 		String cgstCreditPrdCd = null;
-		List<GstChargesMaster> gstChargesMasters = DataUtils.getLatestCharge(ChargeType, drOperationDate);
+		List<GstChargesMaster> gstChargesMasters = DataUtils.getLatestCharge(gstChargeType, drOperationDate);
 		if (!gstChargesMasters.isEmpty()) {
 			GstChargesMaster gstChargesMaster = gstChargesMasters.get(0);
 			sgstCreditAcctId = gstChargesMaster.getSgstacctid();
@@ -12179,9 +12211,21 @@ public class VoucherCommon {
 			Date drOperationDate = getOpenDateNew(lbrCode, session);
 
 			D001004 READSCHGREC = DataUtils.getSystemParameter(lbrCode, "READSCHGREC");
-			String ChargeType = ConfigurationLoader.getParameters(false).getProperty("IMPS_CHARGE_TYPE").trim();
-			int insType = Integer
-					.parseInt(ConfigurationLoader.getParameters(false).getProperty("IMPS_CHG_INST_TYPE").trim());
+			String ChargeType = "";
+			int insType;
+			
+			if("NEFT".equals(narration.substring(0, 4))) {
+				ChargeType = ConfigurationLoader.getParameters(false).getProperty("NEFT_CHARGE_TYPE").trim();
+				insType = Integer
+						.parseInt(ConfigurationLoader.getParameters(false).getProperty("NEFT_CHG_INST_TYPE").trim());
+				
+			}else {
+				ChargeType = ConfigurationLoader.getParameters(false).getProperty("IMPS_CHARGE_TYPE").trim();
+				insType = Integer
+						.parseInt(ConfigurationLoader.getParameters(false).getProperty("IMPS_CHG_INST_TYPE").trim());
+
+			}
+			
 
 			if (READSCHGREC.getValue().trim().equalsIgnoreCase("N")) {
 
@@ -12253,7 +12297,7 @@ public class VoucherCommon {
 				logger.error("drOperationDate::>>" + drOperationDate);
 				logger.error("batch::>>" + batch);
 				logger.error("lbrCode::>>" + lbrCode);
-				onlineBatch = VoucherMPOS.getD010004(lbrCode, batch.trim(), drOperationDate);
+				onlineBatch = VoucherMPOS.getD010004(lbrCode, batch.trim(), drOperationDate, session);
 				logger.error("onlineBatch::>>" + onlineBatch);
 				logger.error("onlineBatch.getStat()::>>" + onlineBatch.getStat());
 				stat = onlineBatch.getStat() + "";
@@ -12560,6 +12604,13 @@ public class VoucherCommon {
 		String ChargeType = ConfigurationLoader.getParameters(false).getProperty("IMPS_CHARGE_TYPE").trim();
 		int insType = Integer
 				.parseInt(ConfigurationLoader.getParameters(false).getProperty("IMPS_CHG_INST_TYPE").trim());
+		
+		if("NEFT".equals(narration.substring(0, 4))) {
+			ChargeType = ConfigurationLoader.getParameters(false).getProperty("NEFT_CHARGE_TYPE").trim();
+			insType = Integer
+					.parseInt(ConfigurationLoader.getParameters(false).getProperty("NEFT_CHG_INST_TYPE").trim());
+			
+		}
 
 		if (READSCHGREC.getValue().trim().equalsIgnoreCase("N")) {
 
