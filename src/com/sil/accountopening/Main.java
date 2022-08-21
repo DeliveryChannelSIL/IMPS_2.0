@@ -27,13 +27,13 @@ public class Main {
 		final HttpServer server = startServer();
 		System.out.println(String.format("Jersey app started with WADL available at "
 				+ "%sapplication.wadl\n Enter \"stop\" without quotes and Hit enter to stop it...", BASE_URI));
-		try (Scanner sc = new Scanner(System.in)) {
+		/*try (Scanner sc = new Scanner(System.in)) {
 			// HBUtil.getSessionFactory().openSession();
 			while (!sc.nextLine().equals("stop")) {
 			}
 			server.shutdown();
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
+		}*/
 	}
 }

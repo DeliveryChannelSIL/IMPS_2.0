@@ -3714,4 +3714,22 @@ public class VoucherMPOS {
 		}
 		
 	}
+	
+	
+	public static D010004 getD010004(int lbrCode, String BatchCd, Date entryDate, Session session)
+	{	
+		//SELECT * FROM D010004 WHERE LBrCode =9 AND EntryDate = '19-APR-2016' AND BatchCd = 'ABBTR'
+		D010004 d004 = null;
+		try{
+			D010004Id id = new D010004Id();
+			id.setBatchCd(BatchCd);
+			id.setEntryDate(entryDate);
+			id.setLbrCode(lbrCode);
+			d004 = session.get(D010004.class, id);
+			//session.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return d004;
+	}
 }
