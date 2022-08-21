@@ -12253,7 +12253,7 @@ public class VoucherCommon {
 				logger.error("drOperationDate::>>" + drOperationDate);
 				logger.error("batch::>>" + batch);
 				logger.error("lbrCode::>>" + lbrCode);
-				onlineBatch = VoucherMPOS.getD010004(lbrCode, batch.trim(), drOperationDate);
+				onlineBatch = VoucherMPOS.getD010004(lbrCode, batch.trim(), drOperationDate, session);
 				logger.error("onlineBatch::>>" + onlineBatch);
 				logger.error("onlineBatch.getStat()::>>" + onlineBatch.getStat());
 				stat = onlineBatch.getStat() + "";
